@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
 }
 header.jumbotron {
-    background: url('https://www.locomotivation.co.uk/assets/images/commis-chef-apprenticeship/commis-chef-apprenticeship.jpg') no-repeat center center;
+    background: url('../images/mainImage.jpg') no-repeat center center;
     background-size: cover;
     color: white;
     padding: 5rem 1rem;
