@@ -133,20 +133,23 @@
 
         <div id="contact" class="my-5">
             <h2 class="text-center">Contact Us</h2>
-            <form>
+            <form id="contactForm">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" required>
+                    <div id="nameError" class="error-message"></div>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="email" required>
+                    <div id="emailError" class="error-message"></div>
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
                     <textarea class="form-control" id="message" rows="4" required></textarea>
+                    <div id="messageError" class="error-message"></div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" onclick="return validateForm()">Submit</button>
             </form>
         </div>
     </div>
@@ -158,6 +161,47 @@
     <script src="js/jquery-3.5.1.slim.min.js.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var message = document.getElementById('message').value.trim();
+            document.getElementById('nameError').innerHTML = '';
+            document.getElementById('emailError').innerHTML = '';
+            document.getElementById('messageError').innerHTML = '';
+
+         
+            if (name === '') {
+                document.getElementById('nameError').innerHTML = 'Name is required';
+                return false;
+            }
+
+            if (email === '') {
+                document.getElementById('emailError').innerHTML = 'Email is required';
+                return false;
+            } else if (!isValidEmail(email)) {
+                document.getElementById('emailError').innerHTML = 'Enter a valid email address';
+                return false;
+                
+            }
+
+        
+            if (message === '') {
+                document.getElementById('messageError').innerHTML = 'Message is required';
+                return false;
+            }
+
+            return true;
+        }
+
+        function isValidEmail(email) {
+           
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
 </body>
 
 </html>
